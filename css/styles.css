@@ -5,12 +5,12 @@ body {
 header {
 	position: fixed;
 	top: 0;
-	background-color: blue;
+	background-color: rgba(255,255,255,.8);
 }
 
 main {
-	padding-top: 160px;
-	background-color: green;
+	padding-top: 130px;
+/*	background-color: green;*/
 }
 
 header,
@@ -37,36 +37,39 @@ main {
 }
 
 
+
+
 input {
-	height: 40px;
+	height: 45px;
 	width: 100%;
 	max-width: 460px;
 	border-radius: .3em;
 	outline: none;
 	border: 2px solid #acacac;
-	margin-bottom: 20px;
 	padding-right: 15px;
 	padding-left: 15px;
-
+	color: #858585;
+	font-size: 16pt;
 }
 
 header {
 	align-items: center;
 	justify-content: center;
-	min-height: 100px;
 }
 
 .header-div {
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+	min-height: 130px;
+	padding: 20px 0;
+	box-sizing: border-box;
 }
 
 h1 {
 	font-size: 2em;
-	padding: 20px 0;
-	font-weight: 700;
 	text-align: center;
+	color: #858585;
 }
 
 main {
@@ -96,23 +99,43 @@ ul {
 	justify-content: center;
 }
 
+footer {
+	min-height: 50px;
+}
+
 @media (min-width: 768px) {
+
+	ul {
+		justify-content: space-around;
+	}
+		.header-div,
+	footer,
+	main {
+	width: calc(100% - 60px);
+	margin: 0 auto;
+
+	}
+
+}
+
+
+@media (min-width: 1100px) {
 
 	.header-div,
 	footer,
 	main {
-	width: calc(100% - 120px);
+	width: calc(100%);
 	margin: 0 auto;
-	max-width: 980px;
+	max-width: 1040px;
 	}
 
 
 	figure {
-		margin:0px;
+		margin:30px;
 	}
 
 	ul {
-		justify-content: space-between;
+		justify-content: center;
 	}
 
 
