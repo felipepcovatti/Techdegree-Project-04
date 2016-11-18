@@ -1,5 +1,6 @@
 body {
 	font-family: 'Inconsolata', monospace;
+
 }
 
 header {
@@ -72,25 +73,39 @@ h1 {
 	color: #858585;
 }
 
+h2 {
+	text-align: center;
+	font-weight: 700;
+	padding: 2px;
+}
+
 main {
 	justify-content: center;
 }
 
-figcaption {
+ul figcaption {
 	display: none;
 }
 
-figure {
+ul figure, iframe {
 	margin: 15px;
 	max-width: 200px;
+	max-height: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
-img {
+ul img {
 	width: 100%;
+}
+
+ul a {
+	margin: 0;
+	padding: 0;
+	max-width: 200px;
+	max-height: 200px;
 }
 
 ul {
@@ -99,16 +114,74 @@ ul {
 	justify-content: center;
 }
 
+figure.lightbox-ctnr {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	background-color: rgba(0,0,0,.9);
+	display: none;
+}
+
+figure.lightbox-ctnr {
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/*.lightbox-ctnr::-webkit-scrollbar {
+	display: none;
+}*/
+
+.lightbox-ctnr img {
+	width: 100%;
+	max-width: 800px;
+	max-height: 80vh;
+	box-sizing: border-box;
+}
+
+
+.lightbox-ctnr figcaption {
+	margin-top: 5px;
+	max-height: 20vh;
+	color: white;
+	max-width: 600px;
+	width: 90%;
+	box-sizing: border-box;
+}
+
 footer {
 	min-height: 50px;
 }
+
+a iframe {
+	z-index: -1;
+	position: relative;
+}
+
+/*resize image to maintain aspect ratio when page heigth is smaller than the pitcure*/
+
+@media (max-height: 625px) {
+
+	.lightbox-ctnr img {
+		max-width: calc(80vh * 1.6);
+	}
+}
+
+/*end*/
+
+
+
 
 @media (min-width: 768px) {
 
 	ul {
 		justify-content: space-around;
 	}
-		.header-div,
+	.header-div,
 	footer,
 	main {
 	width: calc(100% - 60px);
@@ -116,7 +189,16 @@ footer {
 
 	}
 
+	.lightbox-ctnr img {
+	width: 80%;
+	}
+
+	.lightbox-ctnr figcaption {
+	margin-top: 10px;
+	}
+
 }
+
 
 
 @media (min-width: 1100px) {
@@ -130,7 +212,7 @@ footer {
 	}
 
 
-	figure {
+	ul figure, iframe {
 		margin:30px;
 	}
 
