@@ -23,6 +23,8 @@ $("a[href^='img/']").click(function() {
 
 
 
+
+
 	// When someone click on the image
 	// get the identifier of the image (ex 01, 02)
 
