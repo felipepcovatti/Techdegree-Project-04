@@ -1,31 +1,39 @@
 body {
 	font-family: 'Inconsolata', monospace;
+	overflow-y: scroll;
 
 }
+
+
+header,
+.header-div,
+main,
+footer,
+ul figure, 
+iframe,
+ul,
+.lightbox-ctnr .lightbox-box,
+.lightbox-ctnr figure,
+.lightbox-ctnr img  {
+	display: flex;
+	display: ms-flexbox;
+}
+
 
 header {
 	position: fixed;
 	top: 0;
 	background-color: rgba(255,255,255,.8);
+	flex-direction: column;
 }
 
 main {
 	padding-top: 130px;
-/*	background-color: green;*/
 }
-
-header,
-.header-div,
-main,
-footer {
-	display: flex;
-}
-
 
 body, header {
 	width: 100%;
 }
-
 
 .header-div,
 footer {
@@ -36,9 +44,6 @@ footer {
 main {
 	width: 100%;
 }
-
-
-
 
 input {
 	height: 45px;
@@ -95,7 +100,6 @@ ul figure, iframe {
 	margin: 15px;
 	max-width: 200px;
 	max-height: 200px;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -113,51 +117,88 @@ ul a {
 }
 
 ul {
-	display: flex;
+
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-div.lightbox-ctnr {
-	width: 100%;
-	height: 100%;
+
+/*-------------Light Box--------------*/
+
+.lightbox-ctnr {
+	width: 100vw;
+	height: 100vh;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	position: fixed;
 	background-color: rgba(0,0,0,.9);
-	display: none;
 	align-items: center;
 	justify-content: center;
+	overflow-y: scroll;
+	display: none;
+
 }
 
 
-.lightbox-ctnr figure {
-	display: flex;
+
+.lightbox-ctnr .lightbox-box {
+
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
-	background-color: red;
 
+
+
+
+}
+
+.lightbox-ctnr figure {
+
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
 }
 
 .lightbox-ctnr img {
 	width: 100%;
-	max-width: 800px;
-	max-height: 80vh;
 }
 
 .lightbox-ctnr figcaption {
 
-	margin-top: 5px;
+	padding-top: 10px;
 	color: white;
 	max-width: 600px;
 	width: 90%;
 	box-sizing: border-box;
+	text-align: left;
+
 
 }
+
+
+/*---------end----------*/
+
+
+/*-----clear rules to get real img ratio-----*/
+
+.reset-img-js {
+
+	width: 100px !important;
+	height: auto !important;
+	max-height: auto !important;
+	max-width: auto !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: hidden;
+
+}
+
+
 
 footer {
 	min-height: 50px;
@@ -169,24 +210,9 @@ a iframe {
 }
 
 
-/*resize image to maintain aspect ratio when page heigth is smaller than the pitcure*/
-
-@media (max-height: 625px) {
-
-	.lightbox-ctnr img {
-		max-width: calc(80vh * 1.6);
-		max-height: calc(80vh);
-	}
-	.lighbox-ctnr figcaption {
-		max-height: 20vh;
-	}
-}
-
-/*end*/
 
 
-
-@media (min-width: 768px) {
+@media (min-width: 768px)  {
 
 	ul {
 		justify-content: space-around;
@@ -198,12 +224,17 @@ a iframe {
 		margin: 0 auto;
 	}
 
-	.lightbox-ctnr figure {
+	.lightbox-ctnr .lightbox-box {
 		max-width: 80%;
 	}
 
+	.lightbox-ctnr figure {
+		max-width: 800px;
+	}
+
 	.lightbox-ctnr figcaption {
-		margin-top: 10px;
+		padding-top: 15px;
+		width: 100%;
 	}
 
 }
@@ -229,6 +260,10 @@ a iframe {
 		justify-content: center;
 	}
 
+
+	.lightbox-ctnr figcaption {
+		padding-top: 25px;
+	}
 
 
 }
