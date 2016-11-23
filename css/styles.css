@@ -1,7 +1,24 @@
+/*-----Clear rules to get real img ratio with JS-----*/
+
+.reset-img-js {
+
+	width: 200px !important; 
+	height: auto !important;
+	max-height: auto !important;
+	max-width: auto !important;
+	padding: 0 !important;
+	margin: 0 !important;
+
+}
+
+/*-----end------*/
+
+
+/*-----General rules, gallery and search-box--------*/
+
 body {
 	font-family: 'Inconsolata', monospace;
 	overflow-y: scroll;
-
 }
 
 
@@ -11,10 +28,7 @@ main,
 footer,
 ul figure, 
 iframe,
-ul,
-.lightbox-ctnr .lightbox-box,
-.lightbox-ctnr figure,
-.lightbox-ctnr img  {
+ul  {
 	display: flex;
 	display: ms-flexbox;
 }
@@ -78,19 +92,12 @@ h1 {
 	color: #858585;
 }
 
-h2 {
-	text-align: center;
-	font-weight: 700;
-	padding: 2px;
-}
 
-p {
-	margin-bottom: 4px;
-}
 
 main {
 	justify-content: center;
 }
+
 
 ul figcaption {
 	display: none;
@@ -123,83 +130,6 @@ ul {
 }
 
 
-/*-------------Light Box--------------*/
-
-.lightbox-ctnr {
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	position: fixed;
-	background-color: rgba(0,0,0,.9);
-	align-items: center;
-	justify-content: center;
-	overflow-y: scroll;
-	display: none;
-
-}
-
-
-
-.lightbox-ctnr .lightbox-box {
-
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-
-
-
-
-}
-
-.lightbox-ctnr figure {
-
-	width: 100%;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	max-width: 100%;
-}
-
-.lightbox-ctnr img {
-	width: 100%;
-}
-
-.lightbox-ctnr figcaption {
-
-	padding-top: 10px;
-	color: white;
-	max-width: 600px;
-	width: 90%;
-	box-sizing: border-box;
-	text-align: left;
-
-
-}
-
-
-/*---------end----------*/
-
-
-/*-----clear rules to get real img ratio-----*/
-
-.reset-img-js {
-
-	width: 100px !important;
-	height: auto !important;
-	max-height: auto !important;
-	max-width: auto !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	overflow: hidden;
-
-}
-
-
-
 footer {
 	min-height: 50px;
 }
@@ -208,6 +138,82 @@ a iframe {
 	z-index: -1;
 	position: relative;
 }
+
+
+/*----------------end-----------------*/
+
+
+/*-------------Light-Box--------------*/
+
+.lbox-shadow {
+
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: scroll;
+	width: 100%;
+	height: 100%;
+	background: rgba(50,50,50,.97);
+	display: none;
+}
+
+
+.lbox-ctnr {
+	display: flex;
+	display: ms-flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100%;
+}
+
+
+.lbox-box {
+
+	width: 100%;
+	max-width: 800px;
+}
+
+
+.lbox-box figure img {
+	
+	width: 100%;
+
+}
+
+
+.lbox-box figure figcaption {
+
+	width: calc(100% - 30px);
+	padding-bottom: 4px;
+	max-width: 600px;
+	margin: auto;
+	color: white;
+}
+
+
+.lbox-box figure figcaption h2 {
+
+	text-align: center;
+	font-weight: 700;
+	padding: 5px;
+
+}
+
+.lbox-box figure figcaption p {
+
+	padding-bottom: 3px;
+}
+
+
+
+/*-------------------end------------------*/
+
+
+
 
 
 
@@ -224,18 +230,18 @@ a iframe {
 		margin: 0 auto;
 	}
 
-	.lightbox-ctnr .lightbox-box {
-		max-width: 80%;
+
+	.lbox-box {
+
+		width: 85%;
 	}
 
-	.lightbox-ctnr figure {
-		max-width: 800px;
-	}
+	.lbox-box figure figcaption {
 
-	.lightbox-ctnr figcaption {
-		padding-top: 15px;
 		width: 100%;
 	}
+
+
 
 }
 
@@ -261,25 +267,6 @@ a iframe {
 	}
 
 
-	.lightbox-ctnr figcaption {
-		padding-top: 25px;
-	}
-
-
 }
 
-/*@media (min-width: 1024px) {
-
-	.header-div,
-	footer,
-	main {
-	width: calc(100% - 240px);
-	margin: 0 auto;
-	max-width: 1100px;
-	}
-
-	figure {
-		margin:8px;
-	}
-}*/
 
