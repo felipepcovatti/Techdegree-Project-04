@@ -2,14 +2,25 @@
 
 .reset-img-js {
 
-	width: 200px !important; 
+	width: auto !important; 
 	height: auto !important;
 	max-height: auto !important;
 	max-width: auto !important;
 	padding: 0 !important;
 	margin: 0 !important;
+	outline: none;
+/*	display: none;*/
 
 }
+
+
+#dummy {
+
+	position: fixed;
+	bottom: 0;
+	display: none;
+}
+
 
 /*-----end------*/
 
@@ -19,6 +30,11 @@
 body {
 	font-family: 'Inconsolata', monospace;
 	overflow-y: scroll;
+}
+
+
+a {
+	cursor: pointer;
 }
 
 
@@ -143,6 +159,66 @@ a iframe {
 /*----------------end-----------------*/
 
 
+
+
+
+
+/*.spinner {
+  margin: auto;
+  width: 70px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: none;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.3s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.3s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+*/
+
+
+
+
+
+
+
+
+
+
 /*-------------Light-Box--------------*/
 
 .lbox-shadow {
@@ -157,7 +233,9 @@ a iframe {
 	height: 100%;
 	background: rgba(50,50,50,.97);
 	display: none;
+/*	overflow-x: hidden;*/
 }
+
 
 
 .lbox-ctnr {
@@ -168,22 +246,34 @@ a iframe {
 	flex-direction: column;
 	width: 100%;
 	min-height: 100%;
+
+
 }
+
+
 
 
 .lbox-box {
 
 	width: 100%;
-	max-width: 800px;
+	/*max-width: 800px;*/
+	background-size: contain;
+	background-repeat: no-repeat;
+/*	background-color: blue;*/
+
 }
 
+
+/*.lbox-box figure figcaption*/ 
+.lbox-box figure img {
+	opacity: 0;
+	/*filter: saturate(0);*/
+}
 
 .lbox-box figure img {
 	
 	width: 100%;
-
 }
-
 
 .lbox-box figure figcaption {
 
@@ -206,6 +296,7 @@ a iframe {
 .lbox-box figure figcaption p {
 
 	padding-bottom: 3px;
+	line-height: 1.3;
 }
 
 
@@ -233,13 +324,14 @@ a iframe {
 
 	.lbox-box {
 
-		width: 85%;
+		width: 80%;
 	}
 
 	.lbox-box figure figcaption {
 
 		width: 100%;
 	}
+
 
 
 
@@ -267,6 +359,40 @@ a iframe {
 	}
 
 
+	.lbox-box {
+
+		width: 62.5%;
+
+	}
+
+	.lbox-box figure figcaption p {
+
+	line-height: 1.4;
+	}
+
+
+/*	.lbox-box figure figcaption {
+		font-size: 1.1em;
+	}
+
+	.lbox-box figure figcaption h2  {
+		padding-top: 10px;
+	}*/
+
+
 }
 
+
+@media (min-width: 1600px) {
+
+	.lbox-box figure figcaption {
+
+		font-size: 1.7em;
+		max-width: none;
+		text-align: center;
+		padding-top: 30px;
+		padding-bottom: 15px;
+	}
+
+}
 

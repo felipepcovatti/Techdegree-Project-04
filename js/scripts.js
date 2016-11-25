@@ -4,6 +4,7 @@
         var imgH;
         var imgRatio;
         var legH;
+        var winW;
 
 // ----------------end------------------- //
 
@@ -26,30 +27,39 @@
 // ----------------end------------------- //
 
 
+
+
+// -------Responsive img function---------
+
     function responsiveImg() {
+
 
             $(".lbox-box img").addClass("reset-img-js");
 
             imgW = $(".lbox-box img").width();
             imgH = $(".lbox-box img").height();
             imgRatio = imgW / imgH;
+            console.log(imgH);
             legH = $(".lbox-box figcaption").outerHeight(true);
 
             $(".lbox-box img").removeClass("reset-img-js");
 
             newImgW = $(".lbox-box img").width();
             newImgH = newImgW / imgRatio;
-            $(".lbox-ctnr").css("height", newImgH + legH);
-            $(".lbox-box img").css("height",  newImgH);
+            $(".lbox-ctnr").css("height", newImgH + legH + "px");
+            $(".lbox-box img").css("height",  newImgH + "px");
+
+     
 
     }
 
 
 
 
-
     $(".gallery-grid a").click(function makeLightBox() {
 
+
+    // $(".spinner").css("display", "block");
 
     // Remove scrollbar of page in background
     $("body").css("overflow-y", "hidden");
@@ -59,22 +69,48 @@
     $("body").css("width", "calc(100% - " + scrollSize + "px)");
 
 
-    if ($(this).is("a[href^='img/']")) {
+    if ($(this).children().is("img")) {
 
        		// IMAGE
 
         // get the link of the clicked image
-        var clickedImg = $(this).attr('href');
+        var clickedImgSrc = $(this).children().attr('src');
+        var clickedImgBig = clickedImgSrc.replace("thumbnails","big");
+        var clickedImgSmall = clickedImgSrc.replace("thumbnails","small");
+        var clickedImgXSmall = clickedImgSrc.replace("thumbnails", "xsmall");
 
-        $(".lbox-box").append("<figure><img><figcaption><h2>TESTING</h2><p>TESTES TES TSETSa asd as as a asasdfa dsfasdf as asdf asdf asdfa sdfasd TSETES</p></figcaption></figure>");           
-    	$(".lbox-box img").attr("src", clickedImg);
 
-                responsiveImg();
+
+
+                
+
+        
+        $(".lbox-box").css("background-image", "url('" + clickedImgXSmall + "')");
+        $(".lbox-box").append("<figure><img><figcaption><h2>TESTING</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></figcaption></figure>");           
+    	
+
+
+
+        $(".lbox-box img").attr("sizes", "(min-width: 768px) 80vw, (min-width: 1100px) 62.5vw, 100vw");
+        $(".lbox-box img").attr("srcset", clickedImgSmall + " 400w," + clickedImgBig + " 1920w");
+        $(".lbox-box img").attr("src", clickedImgBig);
+ 
+
+
+
+
+      
 
         $(".lbox-box img").on("load", function() {
 
-            
+ 
                 responsiveImg();
+                $(".lbox-box img").css("opacity", "1");
+                // $(".lbox-box figcaption").css("opacity", "1");
+                // $(".spinner").css("visibility", "hidden");
+                // $(".lbox-box").css("background-image", "none");
+
+                
 
             
     }); 
@@ -100,7 +136,7 @@
                 
 
                 responsiveImg();
-
+      
    
             });
 
@@ -111,11 +147,19 @@
  	$(".lbox-shadow").css("display", "none");
  	$("body").css("overflow-y", "scroll");
  	$("body").css("width", "100%");
+    $(".lbox-box img").css("opacity", "0");
+    $(".lbox-box figcaption").css("opacity", "0");
+    // $(".spinner").css("visibility", "visible");
+    // $(".spinner").css("display", "none");
+
+
+
  });
 
 
 
 
+    
 
 
 
