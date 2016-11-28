@@ -30,17 +30,17 @@
 
 // -------Set the max-height of .lbox-box to follow the size of its content----IE-----
 
-    function boxFix() {
+    // function boxHFix() {
 
 
-            legH = $(".lbox-box figcaption").outerHeight(true);
+    //         legH = $(".lbox-box figcaption").outerHeight(true);
 
-            imgH = $(".lbox-box img").height();
+    //         imgH = $(".lbox-box img").height();
 
-            $(".lbox-box").css("max-height", imgH + legH + "px");
+    //         $(".lbox-box").css("max-height", imgH + legH + "px");
             
 
-    }
+    // }
 
 // ----------------end------------------- //
 
@@ -85,16 +85,24 @@
         picturefill();
         
         $(".lbox-box figcaption").append(clickedImgCaption); 
+
+        imgW = $(".lbox-box img").width();
+        imgH = $(".lbox-box img").height();
+
+        alert(imgW);
+        alert(imgH);
  
 
         $(".lbox-box img").on("load", function() {
 
- 
+                // throw new Error("Something went badly wrong!");
+
+                // boxHFix();
                 $(".lbox-box img").css("opacity", "1");
                 // $(".lbox-box figcaption").css("opacity", "1");
                 // $(".spinner").css("visibility", "hidden");
                 // $(".lbox-box").css("background-image", "none");
-                boxFix();
+                
            
         }); 
                         
@@ -118,7 +126,7 @@
     
     $(window).resize( function () {
       
-        boxFix();
+        // boxHFix();
    
     });
 
