@@ -6,6 +6,7 @@
         var imgRatio;
         var legH;
         var winH;
+        
 
 // ----------------end------------------- //
 
@@ -28,19 +29,18 @@
 // ----------------end------------------- //
 
 
-// -------Set the max-height of .lbox-box to follow the size of its content----IE-----
+// -------Set the max-height of .lbox-box to follow the size of its content---------
 
-    // function boxHFix() {
+    function boxHFix() {
 
+   
+            imgH = $("img.blurred-img").height();
 
-    //         legH = $(".lbox-box figcaption").outerHeight(true);
-
-    //         imgH = $(".lbox-box img").height();
-
-    //         $(".lbox-box").css("max-height", imgH + legH + "px");
-            
-
-    // }
+            legH = $(".lbox-box figcaption").outerHeight(true); 
+                             
+            $(".lbox-box").css("max-height", imgH + legH + "px");
+         
+    }
 
 // ----------------end------------------- //
 
@@ -69,36 +69,42 @@
         var clickedImgXSmall = clickedImgSrc.replace("thumbnails", "xsmall");
         var clickedImgAltTxt = $(this).children().attr('alt');
         var clickedImgCaption = $(this).next('figcaption').contents().clone();
+
+
+
               
         // ------Display blurred/low definition img when loading main img-------
-        $(".lbox-box").css("background-image", "url('" + clickedImgXSmall + "')");
+        // $(".lbox-box").css("background-image", "url('" + clickedImgXSmall + "')");
 
-        $(".lbox-box").append("<figure><img><figcaption></figcaption></figure>");
+        $(".lbox-box").append("<img class='blurred-img'><figure><img><figcaption></figcaption></figure>");
+
+        $("img.blurred-img").attr("src", clickedImgXSmall);
+
+        $("img.blurred-img").on("load", function() {
+
+            boxHFix();
+
+        });
           
-        
-        $(".lbox-box img").attr("srcset", clickedImgSmall + " 400w, " + clickedImgMedium + " 800w, " + clickedImgBig + " 1920w");
+      
+        $(".lbox-box figure img").attr("srcset", clickedImgSmall + " 400w, " + clickedImgMedium + " 800w, " + clickedImgBig + " 1920w");
         // $(".lbox-box img").attr("src", clickedImgSmall);
-        $(".lbox-box img").attr("alt", clickedImgAltTxt);
+        $(".lbox-box figure img").attr("alt", clickedImgAltTxt);
 
-        $(".lbox-box img").attr("sizes", "(min-width: 768px) 80vw, (min-width: 1100px) 62.5vw, (min-width: 3072px) 1920px, 100vw");
+        $(".lbox-box figure img").attr("sizes", "(min-width: 768px) 80vw, (min-width: 1100px) 62.5vw, (min-width: 3072px) 1920px, 100vw");
 
         picturefill();
         
-        $(".lbox-box figcaption").append(clickedImgCaption); 
+        $(".lbox-box figcaption").append(clickedImgCaption);
 
-        imgW = $(".lbox-box img").width();
-        imgH = $(".lbox-box img").height();
+        
 
-        alert(imgW);
-        alert(imgH);
- 
-
-        $(".lbox-box img").on("load", function() {
+        $(".lbox-box figure img").on("load", function() {
 
                 // throw new Error("Something went badly wrong!");
 
                 // boxHFix();
-                $(".lbox-box img").css("opacity", "1");
+                $(".lbox-box figure img").css("opacity", "1");
                 // $(".lbox-box figcaption").css("opacity", "1");
                 // $(".spinner").css("visibility", "hidden");
                 // $(".lbox-box").css("background-image", "none");
@@ -126,19 +132,20 @@
     
     $(window).resize( function () {
       
-        // boxHFix();
+        boxHFix();
    
     });
 
 
 // Close the lightbox when clicked over
     $(".lbox-shadow").click(function() {
-    $(".lbox-box figure figcaption").contents().remove();
-    $(".lbox-box figure").remove();
+    // $(".lbox-box figure figcaption").contents().remove();
+    $(".lbox-box").contents().remove();
+    // $(".lbox-box img.blurred-img-js").remove();
  	$(".lbox-shadow").css("visibility", "hidden");
  	$("html").css("overflow-y", "scroll");
  	$("html").css("width", "100%");
-    $(".lbox-box img").css("opacity", "0");
+    $(".lbox-box figure img").css("opacity", "0");
 
  });
 
