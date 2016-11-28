@@ -1,6 +1,6 @@
 /*-----Clear rules to get real img ratio with JS-----*/
 
-.reset-img-js {
+/*.reset-img-js {
 
 	width: auto !important; 
 	height: auto !important;
@@ -9,7 +9,7 @@
 	padding: 0 !important;
 	margin: 0 !important;
 	outline: none;
-/*	display: none;*/
+	display: none;
 
 }
 
@@ -20,18 +20,25 @@
 	bottom: 0;
 	display: none;
 }
-
+*/
 
 /*-----end------*/
-
+/*picture {
+	display: none;
+}*/
 
 /*-----General rules, gallery and search-box--------*/
 
 body {
 	font-family: 'Inconsolata', monospace;
-	overflow-y: scroll;
+/*	overflow-y: scroll;*/
 }
 
+
+html {
+
+	overflow-y: scroll;
+}
 
 a {
 	cursor: pointer;
@@ -225,29 +232,24 @@ a iframe {
 
 	position: fixed;
 	top: 0;
-	bottom: 0;
 	left: 0;
 	right: 0;
+	background: rgba(50,50,50,.97);
 	overflow-y: scroll;
+/*	min-width: 100vw;
+	min-height: 100vh;*/
 	width: 100%;
 	height: 100%;
-	background: rgba(50,50,50,.97);
-	display: none;
-/*	overflow-x: hidden;*/
-}
-
-
-
-.lbox-ctnr {
 	display: flex;
 	display: ms-flexbox;
+
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	width: 100%;
-	min-height: 100%;
 
+	visibility: hidden;
 
+/*	overflow-x: hidden;*/
 }
 
 
@@ -256,31 +258,43 @@ a iframe {
 .lbox-box {
 
 	width: 100%;
-	/*max-width: 800px;*/
 	background-size: contain;
 	background-repeat: no-repeat;
-/*	background-color: blue;*/
+	max-width: 1920px;
+	background-color: rgba(255,0,0,.7);
+
+
+
+
 
 }
 
 
-/*.lbox-box figure figcaption*/ 
+
+.lbox-box figure {
+	background-color: rgba(255,255,255,.5);
+	margin: 0;
+	padding: 0;
+
+}
+
+.lbox-box figure figcaption {
+
+	background-color: grey;
+}
+
 .lbox-box figure img {
+
 	opacity: 0;
-	/*filter: saturate(0);*/
-}
-
-.lbox-box figure img {
-	
 	width: 100%;
+	display: block;
 }
 
 .lbox-box figure figcaption {
 
 	width: calc(100% - 30px);
-	padding-bottom: 4px;
 	max-width: 600px;
-	margin: auto;
+	margin: 0 auto;
 	color: white;
 }
 
@@ -295,7 +309,7 @@ a iframe {
 
 .lbox-box figure figcaption p {
 
-	padding-bottom: 3px;
+	padding-bottom: 7px;
 	line-height: 1.3;
 }
 
@@ -390,7 +404,11 @@ a iframe {
 		font-size: 1.7em;
 		max-width: none;
 		text-align: center;
-		padding-top: 30px;
+
+		
+	}
+
+	.lbox-box figure figcaption p {
 		padding-bottom: 15px;
 	}
 

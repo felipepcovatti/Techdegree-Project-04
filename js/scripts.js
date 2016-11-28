@@ -1,12 +1,31 @@
+/*! picturefill - v3.0.2 - 2016-02-12
+ * https://scottjehl.github.io/picturefill/
+ * Copyright (c) 2016 https://github.com/scottjehl/picturefill/blob/master/Authors.txt; Licensed MIT
+ */
+
+
+
 // -----------Global variables------------- //
 
         var imgW;
         var imgH;
         var imgRatio;
         var legH;
-        var winW;
+        var winH;
 
 // ----------------end------------------- //
+
+
+
+
+
+
+
+
+
+
+
+
 
 // prevent default behavor in anchors of gallery images and videos //
 
@@ -18,10 +37,10 @@
 
 // Get the size of the browser scrollbar //
 
-	$("body").css("overflow-y", "hidden");
-	var bodySizeNoScroll = $('body').outerWidth(true);
-	$("body").css("overflow-y", "scroll");
-	var bodySizeInScroll = $('body').outerWidth(true);
+	$("html").css("overflow-y", "hidden");
+	var bodySizeNoScroll = $('html').outerWidth(true);
+	$("html").css("overflow-y", "scroll");
+	var bodySizeInScroll = $('html').outerWidth(true);
 	var scrollSize = bodySizeNoScroll - bodySizeInScroll;
 
 // ----------------end------------------- //
@@ -31,25 +50,36 @@
 
 // -------Responsive img function---------
 
-    function responsiveImg() {
+    function boxFix() {
 
 
-            $(".lbox-box img").addClass("reset-img-js");
+            // $(".lbox-box img").addClass("reset-img-js");
 
-            imgW = $(".lbox-box img").width();
-            imgH = $(".lbox-box img").height();
-            imgRatio = imgW / imgH;
-            console.log(imgH);
+            // imgW = $(".lbox-box img").width();
+            // imgH = $(".lbox-box img").height();
+            // imgRatio = imgW / imgH;
+            
+
+            // $(".lbox-box img").removeClass("reset-img-js");
+
             legH = $(".lbox-box figcaption").outerHeight(true);
 
-            $(".lbox-box img").removeClass("reset-img-js");
+            // newImgW = $(".lbox-box img").width();
+            // newImgH = newImgW / imgRatio;
+            // imgW = $(".lbox-box img").width();
+            imgH = $(".lbox-box img").height();
+      
+            // $(".lbox-ctnr").css("min-height", newImgH + legH + "px");
 
-            newImgW = $(".lbox-box img").width();
-            newImgH = newImgW / imgRatio;
-            $(".lbox-ctnr").css("height", newImgH + legH + "px");
-            $(".lbox-box img").css("height",  newImgH + "px");
 
-     
+            // $(".lbox-box img").css("height",  newImgH + "px");
+
+            $(".lbox-box").css("max-height", imgH + legH + "px");
+
+
+         
+
+    
 
     }
 
@@ -62,11 +92,11 @@
     // $(".spinner").css("display", "block");
 
     // Remove scrollbar of page in background
-    $("body").css("overflow-y", "hidden");
+    $("html").css("overflow-y", "hidden");
     // Show lightbox
-    $( '.lbox-shadow' ).css("display", "block");
+    $( '.lbox-shadow' ).css("visibility", "visible");
     // Preserve aspect of the page (remove space gained with the removal of the scrollbar)
-    $("body").css("width", "calc(100% - " + scrollSize + "px)");
+    $("html").css("width", "calc(100% - " + scrollSize + "px)");
 
 
     if ($(this).children().is("img")) {
@@ -78,7 +108,9 @@
         var clickedImgBig = clickedImgSrc.replace("thumbnails","big");
         var clickedImgSmall = clickedImgSrc.replace("thumbnails","small");
         var clickedImgXSmall = clickedImgSrc.replace("thumbnails", "xsmall");
-
+        var clickedImgAltTxt = $(this).children().attr('alt');
+        var clickedImgCaption = $(this).next('figcaption').contents().clone();
+        // alert(clickedImgCaption);
 
 
 
@@ -86,17 +118,21 @@
 
         
         $(".lbox-box").css("background-image", "url('" + clickedImgXSmall + "')");
-        $(".lbox-box").append("<figure><img><figcaption><h2>TESTING</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></figcaption></figure>");           
+        $(".lbox-box").append("<figure><img><figcaption></figcaption></figure>");
+          
     	
 
 
 
-        $(".lbox-box img").attr("sizes", "(min-width: 768px) 80vw, (min-width: 1100px) 62.5vw, 100vw");
-        $(".lbox-box img").attr("srcset", clickedImgSmall + " 400w," + clickedImgBig + " 1920w");
-        $(".lbox-box img").attr("src", clickedImgBig);
+        $(".lbox-box img").attr("srcset", clickedImgSmall + " 400w, " + clickedImgBig + " 1920w");
+        $(".lbox-box img").attr("src", clickedImgSmall);
+        $(".lbox-box img").attr("alt", clickedImgAltTxt);
+        $(".lbox-box img").attr("sizes", "(min-width: 768px) 80vw, (min-width: 1100px) 62.5vw, (min-width: 3072px) 1920px, 100vw");
+
+        
+
+        $(".lbox-box figcaption").append(clickedImgCaption); 
  
-
-
 
 
       
@@ -104,13 +140,14 @@
         $(".lbox-box img").on("load", function() {
 
  
-                responsiveImg();
+
                 $(".lbox-box img").css("opacity", "1");
                 // $(".lbox-box figcaption").css("opacity", "1");
                 // $(".spinner").css("visibility", "hidden");
                 // $(".lbox-box").css("background-image", "none");
-
-                
+                boxFix();
+                picturefill();
+               
 
             
     }); 
@@ -128,14 +165,16 @@
 
 	}
 
-        
+   
+
+
 });
 
             $(window).resize( function () {
 
                 
 
-                responsiveImg();
+                boxFix();
       
    
             });
@@ -143,12 +182,13 @@
 
 // Close the lightbox when clicked over
     $(".lbox-shadow").click(function() {
+    $(".lbox-box figure figcaption").contents().remove();
     $(".lbox-box figure").remove();
- 	$(".lbox-shadow").css("display", "none");
- 	$("body").css("overflow-y", "scroll");
- 	$("body").css("width", "100%");
+ 	$(".lbox-shadow").css("visibility", "hidden");
+ 	$("html").css("overflow-y", "scroll");
+ 	$("html").css("width", "100%");
     $(".lbox-box img").css("opacity", "0");
-    $(".lbox-box figcaption").css("opacity", "0");
+    // $(".lbox-box figcaption").css("opacity", "0");
     // $(".spinner").css("visibility", "visible");
     // $(".spinner").css("display", "none");
 
