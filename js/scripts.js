@@ -37,6 +37,7 @@
             imgH = $(".lbox-box img").height();
 
             $(".lbox-box").css("max-height", imgH + legH + "px");
+            
 
     }
 
