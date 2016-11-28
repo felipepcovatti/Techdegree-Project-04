@@ -27,6 +27,7 @@
 
 // ----------------end------------------- //
 
+
 // -------Set the max-height of .lbox-box to follow the size of its content----IE-----
 
     function boxFix() {
