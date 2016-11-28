@@ -68,12 +68,12 @@
         var clickedImgAltTxt = $(this).children().attr('alt');
         var clickedImgCaption = $(this).next('figcaption').contents().clone();
               
-       
+        // ------Display blurred/low definition img when loading main img-------
         $(".lbox-box").css("background-image", "url('" + clickedImgXSmall + "')");
 
         $(".lbox-box").append("<figure><img><figcaption></figcaption></figure>");
           
-
+        
         $(".lbox-box img").attr("srcset", clickedImgSmall + " 400w, " + clickedImgMedium + " 800w, " + clickedImgBig + " 1920w");
         // $(".lbox-box img").attr("src", clickedImgSmall);
         $(".lbox-box img").attr("alt", clickedImgAltTxt);
