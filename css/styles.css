@@ -169,6 +169,115 @@ a iframe {
 
 /*-------------Light-Box--------------*/
 
+	/*------btns-----------*/
+.prev-div,
+.next-div {
+	position: absolute;
+	width: 100px;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	cursor: pointer;
+
+}
+
+.prev-div {
+	left: 0;
+}
+
+.next-div {
+	right: 0;
+}
+
+
+.prev-div:hover .prev-btn,
+.next-div:hover .next-btn {
+	box-shadow: none;
+	border-left: 9px solid #a5a5a5;
+	border-top: 9px solid #a5a5a5;
+
+}
+
+
+
+.prev-btn,
+.next-btn {
+	width: 35px;
+	height: 35px;
+	border-left: 7px solid white;
+	border-top: 7px solid white;
+	border-radius: 5px;
+	box-shadow: inset 3px 3px 0px 0px rgba(0,0,0,0.2);
+}
+
+
+	
+.lbox-box:hover .prev-div,
+.lbox-box:hover .next-div {
+
+	visibility: visible;
+}
+
+.prev-btn {
+	transform: rotate(-45deg);
+
+}
+
+
+.next-btn {
+	transform: rotate(135deg);
+
+}
+
+
+.close-btn {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	z-index: 1000;
+	padding: 2px;
+	text-align: center;
+	width: 25px;
+	height: 25px;
+/*	background-color: blue;*/
+	line-height: 25px;
+	visibility: hidden;
+}
+.close-btn:hover {
+	color:#a5a5a5;
+}
+
+/*.lbox-shadow:after {
+	content: "\00d7";
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	font-size: 50px;
+	line-height: 50px;
+	width: 50px;
+	text-align: center;
+	z-index: 1000;
+	cursor: pointer;
+
+}
+
+.lbox-shadow :after:hover {
+	color: #a5a5a5 !important;
+	background-color: blue;
+}*/
+
+
+
+
+	/*------end btns----*/
+
+	/*----box--------*/
 .lbox-shadow {
 
 	position: fixed;
@@ -204,10 +313,8 @@ a iframe {
 	right: 0;
 	margin: auto;
 
-
-/*	background-color: rgba(255,0,0,.7);*/
-
 }
+
 
 
 
@@ -231,6 +338,7 @@ a iframe {
 	opacity: 0;
 	width: 100%;
 	display: block;
+	cursor: pointer;
 }
 
 .lbox-box figure figcaption {
@@ -242,6 +350,7 @@ a iframe {
 	text-align: center;
 	font-size: .9em;
 	position: relative;
+	opacity: 0;
 }
 
 
@@ -260,7 +369,7 @@ a iframe {
 	display: inline-block;
 	text-align: left;
 }
-
+	/*------end box------*/
 
 
 /*-------------------end------------------*/
@@ -281,6 +390,21 @@ a iframe {
 	main {
 		width: calc(100% - 60px);
 		margin: 0 auto;
+	}
+
+	.prev-div,
+	.next-div {
+		visibility: visible;
+		width: 12.5%;
+	}
+
+	.prev-div {
+		left: -12.5%;
+		
+	}
+
+	.next-div {
+		right: -12.5%;
 	}
 
 
@@ -304,6 +428,10 @@ a iframe {
 		padding-bottom: 3px;
 	}
 
+	
+	.close-btn {
+		visibility: visible;
+	}
 
 
 
@@ -329,6 +457,24 @@ a iframe {
 	ul {
 		justify-content: center;
 	}
+
+
+	.prev-div,
+	.next-div {
+		width: 30%;
+	}
+
+	.prev-div {
+		left: -30%;
+		
+	}
+
+	.next-div {
+		right: -30%;
+	}
+
+
+
 
 
 	.lbox-box {
