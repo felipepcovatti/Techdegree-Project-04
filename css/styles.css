@@ -1,66 +1,51 @@
 /*-----Clear rules to get real img ratio with JS-----*/
 
 .blurred-img {
-
-	width: 100% !important; 
+	width: 100% !important;
 	height: auto !important;
-	max-height: auto !important;
-	max-width: auto !important;
+	max-height: none !important;
+	max-width: none !important;
 	padding: 0 !important;
 	margin: 0 !important;
 	outline: none;
 	position: absolute;
-
-}
-
-
-#dummy {
-
-	position: fixed;
-	bottom: 0;
-	display: none;
 }
 
 
 /*-----end------*/
-/*picture {
-	display: none;
-}*/
+
 
 /*-----General rules, gallery and search-box--------*/
 
 body {
 	font-family: 'Inconsolata', monospace;
-/*	overflow-y: scroll;*/
 }
 
-
 html {
-
 	overflow-y: scroll;
 }
 
-a {
-	cursor: pointer;
+li {
+	transition: opacity .3s;
 }
-
 
 header,
 .header-div,
 main,
 footer,
-ul figure, 
-iframe,
-ul  {
-	display: flex;
-	display: ms-flexbox;
+ul figure,
+ul {
+	display: -webkit-box;/* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;/* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;/* TWEENER - IE 10 */
+	display: -webkit-flex;/* NEW - Chrome */
+	display: flex;/* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
-
 
 header {
 	position: fixed;
 	top: 0;
-	background-color: rgba(255,255,255,.8);
+	background-color: rgba(255, 255, 255, .8);
 	flex-direction: column;
 }
 
@@ -68,7 +53,8 @@ main {
 	padding-top: 130px;
 }
 
-body, header {
+body,
+header {
 	width: 100%;
 }
 
@@ -115,18 +101,15 @@ h1 {
 	color: #858585;
 }
 
-
-
 main {
 	justify-content: center;
 }
-
 
 ul figcaption {
 	display: none;
 }
 
-ul figure, iframe {
+ul figure {
 	margin: 15px;
 	max-width: 200px;
 	max-height: 200px;
@@ -135,11 +118,17 @@ ul figure, iframe {
 	flex-direction: column;
 }
 
-ul img {
+ul img,
+ul iframe {
 	width: 100%;
 }
 
-ul a {
+ul iframe {
+	height: 200px;
+}
+
+ul div {
+	cursor: pointer;
 	margin: 0;
 	padding: 0;
 	max-width: 200px;
@@ -147,17 +136,15 @@ ul a {
 }
 
 ul {
-
 	flex-wrap: wrap;
 	justify-content: center;
 }
-
 
 footer {
 	min-height: 50px;
 }
 
-a iframe {
+div iframe {
 	z-index: -1;
 	position: relative;
 }
@@ -166,21 +153,21 @@ a iframe {
 /*----------------end-----------------*/
 
 
-
 /*-------------Light-Box--------------*/
 
-	/*------btns-----------*/
+
+/*------btns-----------*/
+
 .prev-div,
 .next-div {
 	position: absolute;
 	width: 100px;
 	top: 0;
-	display: flex;
 	justify-content: center;
 	align-items: center;
+	display: none;
 	visibility: hidden;
 	cursor: pointer;
-
 }
 
 .prev-div {
@@ -191,16 +178,13 @@ a iframe {
 	right: 0;
 }
 
-
 .prev-div:hover .prev-btn,
-.next-div:hover .next-btn {
+.next-div:hover .next-btn,
+.lbox-box figure img:hover~.next-div>.next-btn {
 	box-shadow: none;
 	border-left: 9px solid #a5a5a5;
 	border-top: 9px solid #a5a5a5;
-
 }
-
-
 
 .prev-btn,
 .next-btn {
@@ -209,28 +193,30 @@ a iframe {
 	border-left: 7px solid white;
 	border-top: 7px solid white;
 	border-radius: 5px;
-	box-shadow: inset 3px 3px 0px 0px rgba(0,0,0,0.2);
+	box-shadow: inset 3px 3px 0px 0px rgba(0, 0, 0, 0.2);
 }
 
-
-	
 .lbox-box:hover .prev-div,
 .lbox-box:hover .next-div {
+	display: -webkit-box;/* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;/* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;/* TWEENER - IE 10 */
+	display: -webkit-flex;/* NEW - Chrome */
+	display: flex;/* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
 
-	visibility: visible;
+.lbox-box figcaption:hover~.next-div,
+.lbox-box figcaption:hover~.prev-div {
+	display: none;
 }
 
 .prev-btn {
 	transform: rotate(-45deg);
-
 }
-
 
 .next-btn {
 	transform: rotate(135deg);
-
 }
-
 
 .close-btn {
 	position: absolute;
@@ -244,64 +230,42 @@ a iframe {
 	text-align: center;
 	width: 25px;
 	height: 25px;
-/*	background-color: blue;*/
 	line-height: 25px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: none;
 	visibility: hidden;
 }
+
 .close-btn:hover {
-	color:#a5a5a5;
+	color: #a5a5a5;
 }
 
-/*.lbox-shadow:after {
-	content: "\00d7";
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	color: white;
-	font-size: 50px;
-	line-height: 50px;
-	width: 50px;
-	text-align: center;
-	z-index: 1000;
-	cursor: pointer;
 
-}
-
-.lbox-shadow :after:hover {
-	color: #a5a5a5 !important;
-	background-color: blue;
-}*/
+/*------end btns----*/
 
 
+/*----box--------*/
 
-
-	/*------end btns----*/
-
-	/*----box--------*/
 .lbox-shadow {
-
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-
-	background: rgba(50,50,50,.97);
+	background: rgba(50, 50, 50, .97);
 	overflow-y: scroll;
-
 	width: 100%;
 	height: 100%;
 	display: block;
-
 	visibility: hidden;
-
 }
 
-
-
-
 .lbox-box {
-
 	width: 100%;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -312,76 +276,70 @@ a iframe {
 	left: 0;
 	right: 0;
 	margin: auto;
-
 }
 
-
-
-
 .lbox-box figure {
-/*	background-color: rgba(255,255,255,.5);*/
 	margin: 0;
 	padding: 0;
 	position: relative;
 	z-index: 999;
-
-
 }
 
-/*.lbox-box figure figcaption {
-
-	background-color: grey;
-}
-*/
-.lbox-box figure img {
-
-	opacity: 0;
+.lbox-box figure img,
+.lbox-box figure iframe {
 	width: 100%;
 	display: block;
 	cursor: pointer;
 }
 
 .lbox-box figure figcaption {
-
 	max-width: calc(100% - 30px);
-/*	max-width: 600px;*/
 	margin: 0 auto;
 	color: white;
 	text-align: center;
 	font-size: .9em;
 	position: relative;
-	opacity: 0;
 }
 
-
 .lbox-box figure figcaption h2 {
-	
 	text-align: center;
 	font-weight: 700;
 	padding: 8px;
 	padding-bottom: 2px;
-
 }
 
 .lbox-box figure figcaption p {
-
 	line-height: 1.3;
 	display: inline-block;
 	text-align: left;
 }
-	/*------end box------*/
+
+
+/*------end box------*/
+
+input[type=text]::-ms-clear {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+input[type=text]::-ms-reveal {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	display: none;
+}
 
 
 /*-------------------end------------------*/
 
-
-
-
-
-
-
-@media (min-width: 768px)  {
-
+@media (min-width: 768px) {
 	ul {
 		justify-content: space-around;
 	}
@@ -391,132 +349,79 @@ a iframe {
 		width: calc(100% - 60px);
 		margin: 0 auto;
 	}
-
 	.prev-div,
 	.next-div {
-		visibility: visible;
 		width: 12.5%;
+		display: -webkit-box;/* OLD - iOS 6-, Safari 3.1-6 */
+		display: -moz-box;/* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;/* TWEENER - IE 10 */
+		display: -webkit-flex;/* NEW - Chrome */
+		display: flex;/* NEW, Spec - Opera 12.1, Firefox 20+ */
 	}
-
 	.prev-div {
 		left: -12.5%;
-		
 	}
-
 	.next-div {
 		right: -12.5%;
 	}
-
-
 	.lbox-box {
-
 		width: 80%;
 	}
-
 	.lbox-box figure figcaption {
-
 		max-width: 90%;
 		font-size: 1em;
 	}
-/*	.lbox-box figure figcaption h2 {
-		padding: 8px;
-		padding-bottom: 2px;
-	} */
-
-		.lbox-box figure figcaption h2  {
+	.lbox-box figure figcaption h2 {
 		padding: 11px;
 		padding-bottom: 3px;
 	}
-
-	
 	.close-btn {
-		visibility: visible;
+		display: block;
 	}
-
-
-
 }
 
-
-
 @media (min-width: 1100px) {
-
 	.header-div,
 	footer,
 	main {
-	width: 100%;
-	margin: 0 auto;
-	max-width: 1040px;
+		width: 100%;
+		margin: 0 auto;
+		max-width: 1040px;
 	}
-
-
-	ul figure, iframe {
-		margin:30px;
+	ul figure {
+		margin: 30px;
 	}
-
 	ul {
 		justify-content: center;
 	}
-
-
 	.prev-div,
 	.next-div {
 		width: 30%;
 	}
-
 	.prev-div {
 		left: -30%;
-		
 	}
-
 	.next-div {
 		right: -30%;
 	}
-
-
-
-
-
 	.lbox-box {
-
 		width: 62.5%;
-
 	}
-
 	.lbox-box figure figcaption {
-
-		max-width: 75%; 
+		max-width: 75%;
 	}
-
 	.lbox-box figure figcaption p {
-
-	line-height: 1.4;
+		line-height: 1.4;
 	}
-
-
-/*	.lbox-box figure figcaption {
-		font-size: 1.1em;
-	}*/
-
-
-
 }
 
-
 @media (min-width: 1600px) {
-
 	.lbox-box figure figcaption {
-
 		font-size: 1.7em;
 		max-width: 90%;
-
-		
 	}
-
 	.lbox-box figure figcaption h2 {
 		padding: 15px;
 		padding-bottom: 4px;
 	}
-
 }
-
