@@ -26,14 +26,14 @@ function nextImg() {
     clickedImgMedium = nextImgSrc.replace("thumbnails", "medium");
     clickedImgSmall = nextImgSrc.replace("thumbnails", "small");
     clickedImgXSmall = nextImgSrc.replace("thumbnails", "xsmall");
-    clickedImgAltTxt = currentLi.next().find('img').attr('alt');
-    clickedImgCaption = currentLi.next().find('figcaption').contents().clone();
+    clickedImgAltTxt = currentLi.nextAll("li.result").first().find('img').attr('alt');
+    clickedImgCaption = currentLi.nextAll("li.result").first().find('figcaption').contents().clone();
 }
 
 function nextVid() {
     var nextVidSrc = currentLi.nextAll("li.result").first().find('iframe').attr('src');
     clickedVidSrc = nextVidSrc;
-    clickedVidCaption = currentLi.next().find('figcaption').contents().clone();
+    clickedVidCaption = currentLi.nextAll("li.result").first().find('figcaption').contents().clone();
 }
 
 function prevImg() {
@@ -42,14 +42,14 @@ function prevImg() {
     clickedImgMedium = prevImgSrc.replace("thumbnails", "medium");
     clickedImgSmall = prevImgSrc.replace("thumbnails", "small");
     clickedImgXSmall = prevImgSrc.replace("thumbnails", "xsmall");
-    clickedImgAltTxt = currentLi.prev().find('img').attr('alt');
-    clickedImgCaption = currentLi.prev().find('figcaption').contents().clone();
+    clickedImgAltTxt = currentLi.prevAll("li.result").first().find('img').attr('alt');
+    clickedImgCaption = currentLi.prevAll("li.result").first().find('figcaption').contents().clone();
 }
 
 function prevVid() {
     var prevVidSrc = currentLi.prevAll("li.result").first().find('iframe').attr('src');
     clickedVidSrc = prevVidSrc;
-    clickedVidCaption = currentLi.prev().find('figcaption').contents().clone();
+    clickedVidCaption = currentLi.prevAll("li.result").first().find('figcaption').contents().clone();
 }
 // -----------end--------
 // ----Set/apply the proper img/video src to the lightbox---
@@ -190,16 +190,6 @@ function goToPrev() {
         $(".prev-div").css('visibility', 'hidden');
     }
     $(".next-div").css('visibility', 'visible');
-    // get the link of the next image
-    // var prevImgSrc = currentLi.prev().find('img').attr('src');
-    var prevImgSrc = currentLi.prevAll('li.result').first().find('img').attr('src');
-    clickedImgBig = prevImgSrc.replace("thumbnails", "big");
-    clickedImgMedium = prevImgSrc.replace("thumbnails", "medium");
-    clickedImgSmall = prevImgSrc.replace("thumbnails", "small");
-    clickedImgXSmall = prevImgSrc.replace("thumbnails", "xsmall");
-    clickedImgAltTxt = currentLi.prev().find('img').attr('alt');
-    clickedImgCaption = currentLi.prev().find('figcaption').contents().clone();
-    setImgSrc();
 }
 // -----end-----------
 // close light box function------
