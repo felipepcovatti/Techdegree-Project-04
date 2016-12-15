@@ -22,10 +22,10 @@ var scrollSize = bodySizeNoScroll - bodySizeInScroll;
 // Next & prev functions for img and video
 function nextImg() {
     var nextImgSrc = currentLi.nextAll("li.result").first().find('img').attr('src');
+    clickedImgXSmall = nextImgSrc.replace("thumbnails", "xsmall");
     clickedImgBig = nextImgSrc.replace("thumbnails", "big");
     clickedImgMedium = nextImgSrc.replace("thumbnails", "medium");
     clickedImgSmall = nextImgSrc.replace("thumbnails", "small");
-    clickedImgXSmall = nextImgSrc.replace("thumbnails", "xsmall");
     clickedImgAltTxt = currentLi.nextAll("li.result").first().find('img').attr('alt');
     clickedImgCaption = currentLi.nextAll("li.result").first().find('figcaption').contents().clone();
 }
@@ -38,10 +38,10 @@ function nextVid() {
 
 function prevImg() {
     var prevImgSrc = currentLi.prevAll('li.result').first().find('img').attr('src');
+    clickedImgXSmall = prevImgSrc.replace("thumbnails", "xsmall");
     clickedImgBig = prevImgSrc.replace("thumbnails", "big");
     clickedImgMedium = prevImgSrc.replace("thumbnails", "medium");
     clickedImgSmall = prevImgSrc.replace("thumbnails", "small");
-    clickedImgXSmall = prevImgSrc.replace("thumbnails", "xsmall");
     clickedImgAltTxt = currentLi.prevAll("li.result").first().find('img').attr('alt');
     clickedImgCaption = currentLi.prevAll("li.result").first().find('figcaption').contents().clone();
 }
@@ -54,12 +54,14 @@ function prevVid() {
 // -----------end--------
 // ----Set/apply the proper img/video src to the lightbox---
 function setImgSrc() {
-    // hide img untill fully loaded
+
+    // hide imgs untill fully loaded
     $(".lbox-box figure img").css("opacity", "0");
-    // display blurred img meanwhile
-    $("img.blurred-img").attr("src", clickedImgXSmall);
+    $("img.blurred-img").css("opacity", "0");
     // hide caption untill blurred img is loaded
     $(".lbox-box figure figcaption").css("opacity", "0");
+    // display blurred img meanwhile main img is loading
+    $("img.blurred-img").attr("src", clickedImgXSmall);
     $("img.blurred-img").on("load", boxHFix);
     // set img attributes
     $(".lbox-box figure img").attr("srcset", clickedImgSmall + " 400w, " + clickedImgMedium + " 800w, " + clickedImgBig + " 1920w");
@@ -89,6 +91,8 @@ function boxHFix() {
     $(".lbox-box").css("max-height", imgH + legH + "px");
     // Set main img height beforehand so the caption goes to the right place faster
     $(".lbox-box figure img").css("height", imgH + "px");
+    // Show img when loaded
+    $("img.blurred-img").css("opacity", "1");
     // Show caption
     $(".lbox-box figure figcaption").css("opacity", "1");
     // Set prev and next clickable area
